@@ -1,0 +1,36 @@
+[project]
+name = "skinsense"
+version = "0.1.0"
+description = "SkinSense using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "beautifulsoup4>=4.13.5",
+    "bs4>=0.0.2",
+    "crewai[tools]==1.14.4",
+    "langchain-groq>=1.1.2",
+    "litellm>=1.85.1",
+]
+
+[project.scripts]
+skinsense = "skinsense.main:run"
+run_crew = "skinsense.main:run"
+train = "skinsense.main:train"
+replay = "skinsense.main:replay"
+test = "skinsense.main:test"
+run_with_trigger = "skinsense.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv]
+override-dependencies = [
+    "python-dotenv>=1.2.2",
+    "pyarrow==15.0.0",
+    "marshmallow==3.23.2",
+    "setuptools==80.8.0"
+]

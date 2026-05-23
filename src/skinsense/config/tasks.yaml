@@ -1,0 +1,32 @@
+retrieve_ingredients_task:
+  description: >
+    Locate the precise ingredient deck for the product: "{product_name}". 
+    First, invoke the custom skincare extraction tool. If the tool indicates the product cannot be found, 
+    use your internet search tool to find the composition deck. Ensure you successfully grab the textual ingredient sequence.
+  expected_output: >
+    A simple comma-separated or numbered string containing only the full list of ingredients found for "{product_name}".
+  agent: formulation_retriever
+
+analyze_chemical_safety_task:
+  description: >
+    Review the ingredient list provided by the retriever. Examine each element carefully to find harsh chemicals, 
+    known skin hazards, or potential toxic components. Assess how safe this product is for basic skin health and calculate 
+    an overall safety/goodness rating score out of 10.
+  expected_output: >
+    A toxicology review listing flagged ingredients, why they are bad (e.g., cell irritation, clogging, hormone disruption), 
+    and an explicit rating score out of 10 based purely on formula health.
+  agent: chemical_toxicologist
+
+generate_consumer_dashboard_task:
+  description: >
+    Compile the retrieved ingredients and safety notes. Next, perform a swift search to pull down current consumer 
+    feedback, average star ratings, and community reviews for "{product_name}" across the web. 
+    Organize all of this collected intelligence into an exceptional consumer-facing report.
+  expected_output: >
+    A beautifully structured markdown report containing:
+    - 🏷️ **Product Identification & Summary**
+    - ⭐ **Overall Formula Rating (X / 10)**
+    - 🚨 **Hazard Alert (Harsh Chemicals Identified & What could happen if used)**
+    - 💬 **Consumer Review Sentiment (Average star metrics & common user feedback themes)**
+    - 🧪 **Full Ingredient Transparency List**
+  agent: presentation_expert
